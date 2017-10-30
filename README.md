@@ -5,7 +5,7 @@ This project is a fork of https://github.com/drupal-composer/drupal-project.
 - `composer create-project`: Executes `composer install` and sets up a Bootstrap child theme. 
 - `composer install`: Downloads dependencies specified on composer.json file. Creates a `composer.lock` file.
 - `composer require [package-name]`: Adds a new dependency. Modifies `composer.json` and `composer.lock` files.
-- `composer update`: Updates dependencies. Avoid running this command as it will significantly modify `composer.lock` and create a git merge nightmare.
+- `composer update`: Updates all dependencies. Avoid running this command as it will create merge nightmares.
 - `composer create-project`: Runs PHP lint and Coder sniffing tools on custom modules directory (`web/modules/custom`).
 - `composer test`: Runs PHP lint and Coder sniffing tools on custom modules directory (`web/modules/custom`).
 - `composer site-install [db-name]`: If the supplied docker tools are being used, this command will run `drush site-install` with the folloing default settings: admin account: rtd.web, admin password: password.
