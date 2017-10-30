@@ -28,7 +28,7 @@ The following definitions will help you understand how Docker works.
 1. Install [docker](https://store.docker.com/editions/community/docker-ce-desktop-mac).
 2. Run `docker-compose up -d` to build docker images and to create the webserver and database containers.
 3. Run `docker-compose ps` to find out what the **webserver's name** and **port numbers** are (e.g. 32827->80).
-4. Run `bash .docker/scripts/create-site.sh` to create drupal project via composer.
+4. Run `bash .docker/scripts/create-site.sh` to create drupal project via composer. **Warning:** Do not use your computer's globally installed composer as your computer may be running a version of PHP other than the one in the web server container (or in Hostgator).
 5. Optionally run `bash .docker/scripts/install-site.sh drupal` to install a site by skipping the web-based wizard.
 6. Open a web browser and go to http://localhost:[port-number]
 
