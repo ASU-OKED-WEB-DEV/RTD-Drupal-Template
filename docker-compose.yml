@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 
 volumes:
   mysql:
@@ -16,7 +16,9 @@ services:
   webserver:
     build: ./.docker
     volumes:
-      - .:/var/www/app
+      - type: bind
+        source: .
+        target: /var/www/app
     ports:
       - 80
       - 443
