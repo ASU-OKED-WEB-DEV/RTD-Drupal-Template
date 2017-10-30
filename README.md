@@ -53,3 +53,6 @@ Sample command to get a URL to log in as user 1:
 ## TODO ##
 - Write script to automate enabling and disabling xdebug.
 - Write a drush wrapper script.
+- Write a composer wrapper script.
+- Provide support for directories with hyphens.
+- Provide support for mapping custom domains to web server containers.
