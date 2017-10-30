@@ -9,11 +9,9 @@ The following definitions may not be 100% accurate, but they will help you under
 
 - Docker: The software that allows you to build or fetch images; create containers; and execute programs provided by the containers.
 - Docker compose: A tool bundled with Docker that allows you to orchestrate containers.
-- Container: A lightweight 
-
-instance. Think of it as a strip-down version of CentOS.
-- Image: The footprint of a container.
-- Base image: An image can be built on top a base image.
+- Container: A running lightweight server that provides a service (e.g. apache, mysql, redis, etc).
+- Image: The blueprint of a container. A strip-down server that provides a service.
+- Base image: Any of the official images (e.g. Ubuntu) or simply a custom image that another image builds upon.
 - Dockerfile: A file that tells Docker how to create an image.
 - docker-compose.yml: A file that tells docker how to link services together.
 - Service: A name to reference a container. The service that a container provides.
