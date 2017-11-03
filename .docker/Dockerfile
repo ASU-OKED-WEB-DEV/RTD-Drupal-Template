@@ -33,6 +33,7 @@ RUN yum -y install \
     php70w-soap \
     php70w-xml \
     php70w-xmlrpc \
+    php70w-ldap \
     mysql \
     curl \
     git \
