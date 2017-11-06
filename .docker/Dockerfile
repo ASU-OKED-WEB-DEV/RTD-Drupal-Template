@@ -34,6 +34,7 @@ RUN yum -y install \
     php70w-xml \
     php70w-xmlrpc \
     php70w-ldap \
+    patch \
     mysql \
     curl \
     git \
