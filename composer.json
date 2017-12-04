@@ -73,12 +73,15 @@
         "post-update-cmd": [
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
         ],
+        "post-create-project-cmd": [
+            "bash bash/subtheme-setup.sh"
+        ],
+        "site-install": [
+            "bash .docker/scripts/install-site.sh"
+        ],
         "test": [
             "./vendor/bin/phplint --configuration=.phplint.yml --no-cache ./web/modules/custom",
             "./vendor/bin/phpcs --standard=./vendor/drupal/coder/coder_sniffer/Drupal ./web/modules/custom --extensions=php,module,install"
-        ],
-        "post-create-project-cmd": [
-            "bash bash/subtheme-setup.sh"
         ]
     },
     "extra": {
