@@ -21,6 +21,7 @@ RUN yum -y install \
     php70w-common \
     php70w-gd \
     php70w-intl \
+    php70w-ldap \
     php70w-mbstring \
     php70w-mcrypt \
     php70w-mssql \
