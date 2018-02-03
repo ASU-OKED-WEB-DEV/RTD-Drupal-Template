@@ -1,0 +1,9 @@
+#Vagrant sample
+development:
+  dbname: dev_
+  dbpw: OKed_dev5
+  dbhost: localhost
+  dbuser: root
+  qaremoteuser:
+  prodremoteuser:
+  devurl: http://dev.[site].asu.edu:5555
