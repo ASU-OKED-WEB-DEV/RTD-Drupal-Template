@@ -1,122 +1,56 @@
-# Composer template for Drupal projects
-
-[![Build Status](https://travis-ci.org/drupal-composer/drupal-project.svg?branch=8.x)](https://travis-ci.org/drupal-composer/drupal-project)
-
-This project template should provide a kickstart for managing your site
-dependencies with [Composer](https://getcomposer.org/).
-
-If you want to know how to use it as replacement for
-[Drush Make](https://github.com/drush-ops/drush/blob/8.x/docs/make.md) visit
-the [Documentation on drupal.org](https://www.drupal.org/node/2471553).
+# RTD Template for Drupal 8 sites
+This project is a fork of [Drupal Composer](https://github.com/drupal-composer/drupal-project),
+and it should provide a kickstart for creating Drupal 8 sites.
 
 ## Usage
+Follow the steps below to create a new site:
 
-First you need to [install composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx).
-
-> Note: The instructions below refer to the [global composer installation](https://getcomposer.org/doc/00-intro.md#globally).
-You might need to replace `composer` with `php composer.phar` (or similar) 
-for your setup.
-
-After that you can create the project:
-
+##### Clone kickstart repo:
 ```
-composer create-project drupal-composer/drupal-project:8.x-dev some-dir --stability dev --no-interaction
+git clone git@github.com:ASU-OKED-WEB-DEV/RTD-Drupal-Template.git [site-name]
 ```
 
-With `composer require ...` you can download new dependencies to your 
-installation.
-
+##### Customize site settings
+Copy `sample-settings.yml` over to `local-settings.yml` and edit the latter file according to the new site's parameters.
 ```
-cd some-dir
-composer require drupal/devel:~1.0
+cp sample-settings.yml local-settings.yml
 ```
 
-The `composer create-project` command passes ownership of all files to the 
-project that is created. You should create a new git repository, and commit 
-all files not excluded by the .gitignore file.
-
-## What does the template do?
-
-When installing the given `composer.json` some tasks are taken care of:
-
-* Drupal will be installed in the `web`-directory.
-* Autoloader is implemented to use the generated composer autoloader in `vendor/autoload.php`,
-  instead of the one provided by Drupal (`web/vendor/autoload.php`).
-* Modules (packages of type `drupal-module`) will be placed in `web/modules/contrib/`
-* Theme (packages of type `drupal-theme`) will be placed in `web/themes/contrib/`
-* Profiles (packages of type `drupal-profile`) will be placed in `web/profiles/contrib/`
-* Creates default writable versions of `settings.php` and `services.yml`.
-* Creates `web/sites/default/files`-directory.
-* Latest version of drush is installed locally for use at `vendor/bin/drush`.
-* Latest version of DrupalConsole is installed locally for use at `vendor/bin/drupal`.
-
-## Updating Drupal Core
-
-This project will attempt to keep all of your Drupal Core files up-to-date; the 
-project [drupal-composer/drupal-scaffold](https://github.com/drupal-composer/drupal-scaffold) 
-is used to ensure that your scaffold files are updated every time drupal/core is 
-updated. If you customize any of the "scaffolding" files (commonly .htaccess), 
-you may need to merge conflicts if any of your modified files are updated in a 
-new release of Drupal core.
-
-Follow the steps below to update your core files.
-
-1. Run `composer update drupal/core --with-dependencies` to update Drupal Core and its dependencies.
-1. Run `git diff` to determine if any of the scaffolding files have changed. 
-   Review the files for any changes and restore any customizations to 
-  `.htaccess` or `robots.txt`.
-1. Commit everything all together in a single commit, so `web` will remain in
-   sync with the `core` when checking out branches or running `git bisect`.
-1. In the event that there are non-trivial conflicts in step 2, you may wish 
-   to perform these steps on a branch, and use `git merge` to combine the 
-   updated core files with your customized files. This facilitates the use 
-   of a [three-way merge tool such as kdiff3](http://www.gitshah.com/2010/12/how-to-setup-kdiff-as-diff-tool-for-git.html). This setup is not necessary if your changes are simple; 
-   keeping all of your modifications at the beginning or end of the file is a 
-   good strategy to keep merges easy.
-
-## Generate composer.json from existing project
-
-With using [the "Composer Generate" drush extension](https://www.drupal.org/project/composer_generate)
-you can now generate a basic `composer.json` file from an existing project. Note
-that the generated `composer.json` might differ from this project's file.
-
-
-## FAQ
-
-### Should I commit the contrib modules I download?
-
-Composer recommends **no**. They provide [argumentation against but also 
-workrounds if a project decides to do it anyway](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md).
-
-### Should I commit the scaffolding files?
-
-The [drupal-scaffold](https://github.com/drupal-composer/drupal-scaffold) plugin can download the scaffold files (like
-index.php, update.php, …) to the web/ directory of your project. If you have not customized those files you could choose
-to not check them into your version control system (e.g. git). If that is the case for your project it might be
-convenient to automatically run the drupal-scaffold plugin after every install or update of your project. You can
-achieve that by registering `@drupal-scaffold` as post-install and post-update command in your composer.json:
-
-```json
-"scripts": {
-    "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
-    "post-install-cmd": [
-        "@drupal-scaffold",
-        "..."
-    ],
-    "post-update-cmd": [
-        "@drupal-scaffold",
-        "..."
-    ]
-},
+##### Create kickstart site:
+SSH into your virtual dev environment and run
 ```
-### How can I apply patches to downloaded modules?
+composer create project
+```
+The above command will run for a few minutes it performs several tasks, which are listed below.
+- Install Drupal.
+- Create a Bootstrap child-theme (`rtdoked`).
+- Download theme packages.
+- Enable `rtdoked`.
+- Set up drush alias files.
 
-If you need to apply patches (depending on the project being modified, a pull 
-request is often a better solution), you can do so with the 
-[composer-patches](https://github.com/cweagans/composer-patches) plugin.
+##### Manage dependecies:
+Add a new PHP library or Drupal module or theme.
+```
+composer require "drupal/rules"
+```
 
-To add a patch to drupal module foobar insert the patches section in the extra 
-section of composer.json:
+Add a dev package.
+```
+composer require --dev "drupal/devel"
+```
+
+Update a package.
+```
+composer require "drupal/pathauto"
+```
+
+Remove a package
+```
+composer remove "drupal/ldap"
+```
+
+Add a patch to a Drupal module by modifying your `composer.json` as indicated below 
+
 ```json
 "extra": {
     "patches": {
@@ -126,6 +60,70 @@ section of composer.json:
     }
 }
 ```
-### How do I switch from packagist.drupal-composer.org to packages.drupal.org?
 
-Follow the instructions in the [documentation on drupal.org](https://www.drupal.org/docs/develop/using-composer/using-packagesdrupalorg).
+## Development Workflow
+### Initial work:
+The following steps need to be performed only once.
+1. Set up hosting accounts on QA and Prod servers.
+1. Create a new GitHub repo and protect the master branch.
+1. Protect the repo's master branch by enforcing pull requests and code reviews.
+1. Kickstart local site.
+1. Add additional modules/dependencies.
+1. Edit site's basic configueration (e.g. site name, global email, timezone, etc).
+1. Export drupal configuration to files.
+1. Initialize repo, add remote, commit files, and push code to GitHub. 
+1. Set up QA site: clone repo, install non-dev dependencies and edit settings.php.
+1. Push local database to QA.
+
+#### Development work:
+Most of the following tasks will be performed regularly by developers:
+1. Pick an issue (or create a new one) from the Issue Queue and assign it to yourself. 
+1. Clone repo.
+1. Create a new branch that branches off from master (see naming conventions below).
+1. Pull down QA database.
+1. **[TODO]** Enable development mode.
+1. Make sure `stage_file_proxy` points to QA or Prod site.
+1. Write behavioral and/or unit tests.
+1. Make code changes until all tests pass.
+1. Refactor code.
+1. Commit often (how often? Use your best judgement).
+1. Once you're done working on your feature-request or bugfix, disable development mode.
+1. Export configuration changes. 
+1. Rebase your branch with orgin/master. Fix merge-conflicts if there are any.
+1. Push branch to GitHub and create a pull request (PR).
+1. Have a teammate review your PR.  
+1. Once your PR is approved, merge your branch (use squash commits option).
+1. Deploy feature/bugfix to QA site.
+1. Have stakeholders review your work.
+1. If the client is not happy with your work, create a new issue and start over.  
+
+##### Branch naming conventions
+Branch names should include the issue number and a brief description. For example:
+- iss1--install-webform-module
+- iss19--home-page-styles
+- iss25--rtd-training-module
+
+#### Going Live:
+Once the stakeholders have reviewed and approved all features, follow the steps below:
+
+##### New Site:
+1. Set up Prod site: clone repo, install non-dev dependencies and edit settings.php.
+1. Pull database from QA site.
+1. Copy over user-uploaded files from QA site (/sites/default/files).
+1. Clear caches.
+1. Update DNS settings.
+1. Perform a smoke test.
+
+##### Existing Site:
+1. Deploy new feature/bugfix to Prod site. Follow instructions as described in PR.
+1. Perform a smoke test.
+
+
+
+### Important links for developers
+- [Drupal coding standards page](https://www.drupal.org/docs/develop/standards).
+- [PHP The Right Way](http://www.phptherightway.com/).
+- [Composer CLI manual](https://getcomposer.org/doc/03-cli.md)
+- [JavaScript - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Modular CSS](http://thesassway.com/modular-css)
+- [Git documentation](https://git-scm.com/book/en/v2)
