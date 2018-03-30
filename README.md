@@ -1,6 +1,12 @@
 # RTD Template for Drupal 8 sites
-This project is a fork of [Drupal Composer](https://github.com/drupal-composer/drupal-project),
-and it should provide a kickstart for creating Drupal 8 sites.
+This project is a fork of [Drupal Composer](https://github.com/drupal-composer/drupal-project), a template for building Drupal  8 sites that allows you to manage dependencies (e.g. libraries, modules, and themes) via composer.
+
+## Features
+In addition to all of the features provided by the original Drupal Composer project, the RTD web team has added the following:
+- Automatic generation of Bootstrap child subtheme (rtdoked).
+- Install ASU/RTD modules (e.g. ASU Brand, RTD Tools).
+- Install commonly used contrib modules (e.g. FontAwesome, Honeypot).
+- Local development tools (e.g. drush aliases generation).
 
 ## Usage
 Follow the steps below to create a new site:
@@ -22,7 +28,7 @@ SSH into your virtual dev environment and run
 composer create project
 ```
 The above command will run for a few minutes it performs several tasks, which are listed below.
-- Install Drupal.
+- Download Drupal core and all dependencies listed on composer.json.
 - Create a Bootstrap child-theme (`rtdoked`).
 - Download theme packages.
 - Enable `rtdoked`.
@@ -117,8 +123,6 @@ Once the stakeholders have reviewed and approved all features, follow the steps 
 ##### Existing Site:
 1. Deploy new feature/bugfix to Prod site. Follow instructions as described in PR.
 1. Perform a smoke test.
-
-
 
 ### Important links for developers
 - [Drupal coding standards page](https://www.drupal.org/docs/develop/standards).
