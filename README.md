@@ -2,8 +2,8 @@
 This project is a fork of [Drupal Composer](https://github.com/drupal-composer/drupal-project), a template for building Drupal  8 sites that allows you to manage dependencies (e.g. libraries, modules, and themes) via composer.
 
 ## Features
-In addition to all of the features provided by the original Drupal Composer project, the RTD web team has added the following:
-- Automatic generation of Bootstrap child subtheme (rtdoked).
+Everything included in Drupal composer plus the following:
+- Generate Bootstrap child theme (rtdoked).
 - Install ASU/RTD modules (e.g. ASU Brand, RTD Tools).
 - Install commonly used contrib modules (e.g. FontAwesome, Honeypot).
 - Local development tools (e.g. drush aliases generation).
